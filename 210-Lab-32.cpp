@@ -22,7 +22,7 @@ int main ()
         car.print();
     }
 
-    cout << "Removing one car (front)...\n";
+    cout << "\nRemoving one car (front)...\n";
     lane.pop_front();
 
     cout << "Queue after pop:\n";
@@ -31,5 +31,5 @@ int main ()
         car.print();
     }
 
-    return 1;
+    return 0;
 }
