@@ -16,12 +16,12 @@ int main ()
     srand(time(0));
 
     // Intial population
-    for (int i = 1; i <= INITIAL_SIZE; i++)
+    for (int i = 0; i < INITIAL_SIZE; i++)
     {
         lane.push_back(Car());
     }
 
-    cout << "Initial lane:\n";
+    cout << "Initial queue:\n";
     for (auto car : lane)
     {
         car.print();
@@ -31,7 +31,7 @@ int main ()
 
     while (!lane.empty())
     {
-        int chance = rand() % 50;
+        int chance = rand() % 100;
 
         cout << "\nTime: " << time << " ";
 
@@ -52,7 +52,7 @@ int main ()
         cout << "Queue:\n";
         if (lane.empty())
         {
-            cout << "   Empty\n";
+            cout << "    Empty\n";
         }
         else
         {
