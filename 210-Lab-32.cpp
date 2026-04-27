@@ -52,6 +52,7 @@ int main ()
 
             cout << "Lane " << i + 1 << " ";
 
+            // Empty Lane
             if (lanes[i].empty())
             {
                 if(chance < 50)
@@ -68,12 +69,14 @@ int main ()
             }
             else
             {
+                // Pay
                 if (chance < PROB_PAY)
                 {
                     cout << "Paid: ";
                     lanes[i].front().print();
                     lanes[i].pop_front();
                 }
+                // Join
                 else if (chance < PROB_PAY + PROB_JOIN)
                 {
                     Car newCar;
@@ -81,6 +84,7 @@ int main ()
                     newCar.print();
                     lanes[i].push_back(newCar);
                 }
+                // Switch
                 else
                 {
                     Car movingCar = lanes[i].back();
