@@ -7,27 +7,32 @@
 #include "Car.h"
 using namespace std;
 
+const int NUM_LANES = 4;
+
 int main ()
 {
-    const int INITIAL_SIZE = 2;
-
-    deque<Car> lane;
+    
+    deque<Car> lane[NUM_LANES];
 
     srand(time(0));
 
     // Intial population
-    for (int i = 0; i < INITIAL_SIZE; i++)
+    for (int i = 0; i < NUM_LANES; i++)
     {
-        lane.push_back(Car());
+        lane[i].push_back(Car());
     }
 
-    cout << "Initial queue:\n";
-    for (auto car : lane)
+    //cout << "Initial queue:\n";
+    for (int i = 0; i < NUM_LANES; i++)
     {
-        car.print();
+        cout << "Lane " << i + 1 << ":\n";
+        for(auto car : lane[i])
+        {
+            car.print();
+        }
     }
     
-    int time = 1;
+    /*int time = 1;
 
     while (!lane.empty())
     {
@@ -63,7 +68,7 @@ int main ()
         }
 
         time++;
-    }
+    }*/
     
 
     return 0;
