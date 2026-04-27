@@ -7,9 +7,14 @@
 #include "Car.h"
 using namespace std;
 
+// Constants
 const int NUM_LANES = 4;
 const int INITIAL_SIZE = 2;
 const int TIME_LIMIT = 20;
+
+// Probabilities
+const int PROB_PAY = 46;
+const int PROB_JOIN = 39;
 
 int main ()
 {
@@ -47,25 +52,29 @@ int main ()
 
             cout << "Lane " << i + 1 << " ";
 
-            if (!lanes[i].empty())
+            if (lanes[i].empty())
             {
                 if(chance < 50)
+                {
+                    Car newCar;
+                    cout << "Joined: ";
+                    newCar.print();
+                    lanes[i].push_back(newCar);
+                }
+                else
+                {
+                    cout << "Idle\n";
+                }
+            }
+            else
+            {
+                if (chance < PROB_PAY)
                 {
                     cout << "Paid: ";
                     lanes[i].front().print();
                     lanes[i].pop_front();
                 }
-                else
-                {
-                    Car newCar;
-                    cout << "Joined: ";
-                    newCar.print();
-                    lanes[i].push_back(newCar);
-                }
-            }
-            else
-            {
-                if (chance < 50)
+                else if (chance < PROB_PAY + PROB_JOIN)
                 {
                     Car newCar;
                     cout << "Joined: ";
@@ -74,14 +83,27 @@ int main ()
                 }
                 else
                 {
-                    cout << "No action\n";
+                    Car movingCar = lanes[i].back();
+                    lanes[i].pop_back();
+
+                    int newLane;
+                    do
+                    {
+                        newLane = rand() % NUM_LANES;
+                    } while (newLane == i);
+                    
+                    lanes[newLane].push_back(movingCar);
+
+                    cout << "Switched: ";
+                    movingCar.print();
+                    
                 }
             }
         }
 
         for (int i = 0; i <NUM_LANES; i++)
         {
-            cout << "Lane " << i + 1 << " Queue:\n";
+            cout << "Lane: " << i + 1 << " Queue:\n";
 
             if (lanes[i].empty())
             {
