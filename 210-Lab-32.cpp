@@ -16,13 +16,18 @@ int main ()
 
     srand(time(0));
 
-    // Intial population
+    
+    const int INITIAL_SIZE = 2;
+
     for (int i = 0; i < NUM_LANES; i++)
     {
-        lane[i].push_back(Car());
+        for(int j = 0; j < INITIAL_SIZE; j++)
+        {
+            lane[i].push_back(Car()); 
+        }
     }
 
-    //cout << "Initial queue:\n";
+    cout << "Initial queue:\n";
     for (int i = 0; i < NUM_LANES; i++)
     {
         cout << "Lane " << i + 1 << ":\n";
@@ -32,43 +37,7 @@ int main ()
         }
     }
     
-    /*int time = 1;
-
-    while (!lane.empty())
-    {
-        int chance = rand() % 100;
-
-        cout << "\nTime: " << time << " ";
-
-        if (chance < 55)
-        {
-            cout << "Operation: Car paid: ";
-            lane.front().print();
-            lane.pop_front();
-        }
-        else
-        {
-            Car newCar;
-            cout << "Operation: Joined lane: ";
-            newCar.print();
-            lane.push_back(newCar);
-        }
-
-        cout << "Queue:\n";
-        if (lane.empty())
-        {
-            cout << "    Empty\n";
-        }
-        else
-        {
-            for (auto car : lane)
-            {
-                car.print();
-            }
-        }
-
-        time++;
-    }*/
+    
     
 
     return 0;
