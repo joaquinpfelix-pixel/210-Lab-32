@@ -37,28 +37,45 @@ int main ()
         }
     }
     
-    for (int time = 0; time <=TIME_LIMIT; time++)
+    for (int time = 1; time <=TIME_LIMIT; time++)
     {
-        cout << "\nTime: " << time << " seconds\n";
+        cout << "\nTime: " << time << endl;
         
         for (int i = 0; i < NUM_LANES; i++)
         {
-            int chance = rand() % 50;
+            int chance = rand() % 100;
 
             cout << "Lane " << i + 1 << " ";
 
-            if (!lanes[i].empty() && chance < 50)
+            if (!lanes[i].empty())
             {
-                cout << "Paid: ";
-                lanes[i].front().print();
-                lanes[i].pop_front();
+                if(chance < 50)
+                {
+                    cout << "Paid: ";
+                    lanes[i].front().print();
+                    lanes[i].pop_front();
+                }
+                else
+                {
+                    Car newCar;
+                    cout << "Joined: ";
+                    newCar.print();
+                    lanes[i].push_back(newCar);
+                }
             }
             else
             {
-                Car newCar;
-                cout << "Joined: ";
-                newCar.print();
-                lanes[i].push_back(newCar);
+                if (chance < 50)
+                {
+                    Car newCar;
+                    cout << "Joined: ";
+                    newCar.print();
+                    lanes[i].push_back(newCar);
+                }
+                else
+                {
+                    cout << "No action\n";
+                }
             }
         }
 
